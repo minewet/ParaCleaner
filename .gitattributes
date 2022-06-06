@@ -1,0 +1,6 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+Assets/Equilibrium[[:space:]]VR/Materials/Nebula_03_Cubemap.exr filter=lfs diff=lfs merge=lfs -text
+Assets/Terrain/Nebula[[:space:]]Skyboxes/Nebula_02_Cubemap.exr filter=lfs diff=lfs merge=lfs -text
+ filter=lfs diff=lfs merge=lfs -text
+Assets/Terrain/Nebula[[:space:]]Skyboxes/Nebula_04_Cubemap.exr filter=lfs diff=lfs merge=lfs -text
+Library/ArtifactDB filter=lfs diff=lfs merge=lfs -text
