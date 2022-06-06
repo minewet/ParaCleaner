@@ -86,7 +86,7 @@ public class GameLogic : MonoBehaviour {
 
     void Start () {
 
-        EagleAnim = Eagle.GetComponent<Animation>();
+        //EagleAnim = Eagle.GetComponent<Animation>();
         SpInc = thrust;
         Scenemanager = GameObject.Find("SCENEMANAGER");
         if (Scenemanager == null) return;
@@ -451,30 +451,34 @@ public class GameLogic : MonoBehaviour {
             {
                 SphereTransform.transform.position += CameraArm.forward * thrust * Time.deltaTime;
             }
-
-                
-                if (RandomizeFlups)
+        /*
+         * if (RandomizeFlups)
         TimeFlupps += Time.deltaTime;
 
-            if (TimeFlupps>=10)
-            {
-                EagleAnim["Armature|Fly_main"].speed = 2;
-                EagleAnim.CrossFade("Armature|Fly_main");
-                EagleFlight = true;
-            if (!Eagle.GetComponent<AudioSource>().isPlaying)
-                Eagle.GetComponent<AudioSource>().Play();
-                TimeFlupps = 0;
-                }
-            else
-                    if (!EagleFlight)
-            {
-                EagleAnim["Armature|Free_fly"].speed = 2;
-                EagleAnim.CrossFade("Armature|Free_fly");
-                Eagle.GetComponent<AudioSource>().Stop();
+
+
+        if (TimeFlupps>=10)
+        {
+            EagleAnim["Armature|Fly_main"].speed = 2;
+            EagleAnim.CrossFade("Armature|Fly_main");
+            EagleFlight = true;
+        if (!Eagle.GetComponent<AudioSource>().isPlaying)
+            Eagle.GetComponent<AudioSource>().Play();
+            TimeFlupps = 0;
             }
+        else
+                if (!EagleFlight)
+        {
+            EagleAnim["Armature|Free_fly"].speed = 2;
+            EagleAnim.CrossFade("Armature|Free_fly");
+            Eagle.GetComponent<AudioSource>().Stop();
+        }
+         */
+
+
     }
 
-   public IEnumerator SpawnOnPosition(float waitTime, int idxNum)
+    public IEnumerator SpawnOnPosition(float waitTime, int idxNum)
     {
         yield return new WaitForSeconds(waitTime);
         ParentObject.position = SpawnZones[idxNum].position;
