@@ -15,7 +15,7 @@ public class GameLogic : MonoBehaviour {
     public float Feather_left = 8; //count feathers for finding quest
     public int gameMode=0; //2 - chasing, 1-Feather Finding, 0-Exploring
     //public GameObject BonusHolder; //bonus gameobject
-    public Text Points_Text; //for printing points
+    //public Text Points_Text; //for printing points
     //public TextMesh Bonus_Text; //for printing bonus text
     public GameObject Eagle; //using for eagle animations
     public Animation EagleAnim; //current eagle animation
@@ -163,7 +163,7 @@ public class GameLogic : MonoBehaviour {
                     Checkpoint_spawn = false; //stop timer for first checkpoint spawner
                 }
 
-                Points_Text.text = "Points: " + Equ_Points.ToString();
+                //Points_Text.text = "Points: " + Equ_Points.ToString();
 
             if (EndedExploring)
             {
@@ -255,7 +255,7 @@ public class GameLogic : MonoBehaviour {
                 float fraction = (TimeLeft * 100) % 100;
 
                 //Bonus_Text.text = "Time left: " + string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
-                Points_Text.text = "Feathers left: " + Feather_left.ToString();
+                //Points_Text.text = "Feathers left: " + Feather_left.ToString();
 
                 if (Feather_left <= 0)
                 {
@@ -352,7 +352,7 @@ public class GameLogic : MonoBehaviour {
                     
                 }
 
-                Points_Text.text = "Points: " + Equ_Points.ToString();
+                //Points_Text.text = "Points: " + Equ_Points.ToString();
 
             }
 
@@ -409,7 +409,7 @@ public class GameLogic : MonoBehaviour {
                 {
                     Lines[0].SetActive(false);
                     Lines[1].SetActive(false);
-                    Points_Text.gameObject.SetActive(false);
+                    //Points_Text.gameObject.SetActive(false);
                     //Bonus_Text.gameObject.SetActive(false);
                     //BonusHolder.gameObject.SetActive(false);
                     //GetComponent<Animation>().Play("Ending"); //See documentation

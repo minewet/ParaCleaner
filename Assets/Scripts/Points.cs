@@ -1,79 +1,63 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 
 public class Points : MonoBehaviour {
 
-    public float Equ_Points = 0; //Player points
-    public bool gold_bonus = false; //is gold bonus?
-    public bool green_bonus = false;//is green bonus?
-    public bool radial_target = false; //is radial target (checkpoint)
-    public AudioClip TB_sound; //turbo sound
-    public Animator animator;
-    
+    public AudioClip getpoint;
+    public AudioClip busruk;
+
+    public Text Point;
+    public Animator animator;   
     public GameObject MainCamera;
 
-	void Start () {
+    public int score_1;
+    public int score_2;
+    public int score_3;
 
-        MainCamera = GameObject.Find("Main Camera");
-        animator = GameObject.Find("untitled").GetComponent<Animator>();
+    private int pt = 0;
 
-    }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Trash_1"))
         {
             animator.SetTrigger("Idle");
             animator.SetTrigger("Take");
 
-            if (gold_bonus) //if player gets gold feather
-            {
-                MainCamera.GetComponent<AudioSource>().PlayOneShot(MainCamera.GetComponent<GameLogic>().GetPoints, .4f);
-                Equ_Points = 500;
-                MainCamera.GetComponent<GameLogic>().GoldBonus = true;
-                MainCamera.GetComponent<GameLogic>().TimeBonus = 5;
-                MainCamera.GetComponent<GameLogic>().Equ_Points += Equ_Points;
+            MainCamera.GetComponent<AudioSource>().PlayOneShot(getpoint, 1f);
+            MainCamera.GetComponent<AudioSource>().PlayOneShot(busruk, 1f);
+            Destroy(other.gameObject);
 
-                MainCamera.GetComponent<GameLogic>().Checkpoint_spawn = true;
-                if (MainCamera.GetComponent<GameLogic>().ch_idx == 14) //if player reached last checkpoint then start next game mode
-                {
-                    MainCamera.GetComponent<GameLogic>().EndedExploring = true;
-                }
-                Destroy(gameObject);
-            }
+            pt += score_1;
+            Point.text = "Total |    " + pt + " oz";
+        }
 
-            if (!gold_bonus && !green_bonus && !radial_target) //if player gets blue feather
-            {
-                Equ_Points = 300;
-                MainCamera.GetComponent<AudioSource>().PlayOneShot(MainCamera.GetComponent<GameLogic>().GotFeather, .3f);
-                MainCamera.GetComponent<GameLogic>().Equ_Points += Equ_Points;
-                MainCamera.GetComponent<GameLogic>().Feather_left -= 1;
-                Destroy(gameObject);
-            }
+        else if (other.CompareTag("Trash_2"))
+        {
+            animator.SetTrigger("Idle");
+            animator.SetTrigger("Take");
 
-            if (green_bonus) //if player gets green feather
-            {
-                Equ_Points = 100;
-                MainCamera.GetComponent<GameLogic>().Equ_Points += Equ_Points;
-                MainCamera.GetComponent<GameLogic>().TimeBonus = 5;
-                //MainCamera.GetComponent<Animation>().Play("Turbo"); //See documentation
-                MainCamera.GetComponent<GameLogic>().turbo = true;
-                MainCamera.GetComponent<AudioSource>().PlayOneShot(TB_sound, 1);
-                Destroy(gameObject);
-            }
+            MainCamera.GetComponent<AudioSource>().PlayOneShot(getpoint, 1f);
+            MainCamera.GetComponent<AudioSource>().PlayOneShot(busruk, 1f);
+            Destroy(other.gameObject);
 
-            if (radial_target) // for 2 game mode ending
-            {
-                MainCamera.GetComponent<GameLogic>().Checkpoint_time_spawn = true;
-                MainCamera.GetComponent<AudioSource>().PlayOneShot(MainCamera.GetComponent<GameLogic>().GetPoints, .3f);
-                if (MainCamera.GetComponent<GameLogic>().ch_idx == 15)
-                {
-                    MainCamera.GetComponent<GameLogic>().ShowEnding = true;
-                }
-                transform.parent.gameObject.SetActive(false);
-            }
+            pt += score_2;
+            Point.text = "Total |    "+ pt + " oz";
+        }
 
+        else if (other.CompareTag("Trash_3"))
+        {
+            animator.SetTrigger("Idle");
+            animator.SetTrigger("Take");
+
+            MainCamera.GetComponent<AudioSource>().PlayOneShot(getpoint, 1f);
+            MainCamera.GetComponent<AudioSource>().PlayOneShot(busruk, 1f);
+            Destroy(other.gameObject);
+
+            pt += score_3;
+            Point.text = "Total |    " + pt + " oz";
         }
     }
 }
